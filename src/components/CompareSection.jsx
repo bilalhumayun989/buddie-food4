@@ -277,11 +277,11 @@ function CompareDesktop() {
 // ── Root export — picks layout by screen width ────────────────────────────────
 export default function CompareSection() {
   const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+    typeof window !== 'undefined' ? window.innerWidth <= 870 : false
   )
 
   useEffect(() => {
-    function onResize() { setIsMobile(window.innerWidth <= 768) }
+    function onResize() { setIsMobile(window.innerWidth <= 870) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])

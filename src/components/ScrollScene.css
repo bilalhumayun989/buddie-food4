@@ -474,8 +474,8 @@
   }
 }
 
-/* ── Mobile phones only (desktop unchanged above 768px) ── */
-@media (max-width: 768px) {
+/* ── Mobile phones only (desktop unchanged above 870px) ── */
+@media (max-width: 870px) {
   .ss-wrap {
     height: 500vh;
   }
@@ -592,10 +592,10 @@
 }
 
 /* ═══════════════════════════════════════════
-   MOBILE STATIC LAYOUT (≤768px)
+   MOBILE STATIC LAYOUT (≤870px)
    No scroll animation — clean single column
 ═══════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 870px) {
   /* Hide the desktop scroll scene entirely on mobile */
   .ss-wrap { display: none; }
 }
@@ -606,7 +606,7 @@
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 870px) {
   .ss-mobile { display: block; }
 
   /* ── Mobile hero green section ── */

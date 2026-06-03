@@ -59,7 +59,7 @@ export default function ScrollScene() {
 
   useEffect(() => {
     // ── On mobile skip all animation, show static layout ──────────
-    if (window.innerWidth <= 768) return
+    if (window.innerWidth <= 870) return
 
     function tick() {
       const wrap = wrapRef.current
@@ -158,7 +158,7 @@ export default function ScrollScene() {
     }
   }, [])
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 870
 
   // ── MOBILE: static hero — no scroll magic ────────────────────────────────
   if (isMobile) {

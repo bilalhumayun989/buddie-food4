@@ -17,10 +17,10 @@ function mod(n, m) { return ((n % m) + m) % m }
 
 // Card width changes per breakpoint — read from CSS via JS
 function getCardW() {
-  return window.innerWidth <= 480 ? 160 : window.innerWidth <= 768 ? 190 : 260
+  return window.innerWidth <= 480 ? 160 : window.innerWidth <= 870 ? 190 : 260
 }
 function getCardGap() {
-  return window.innerWidth <= 768 ? 12 : 20
+  return window.innerWidth <= 870 ? 12 : 20
 }
 
 export default function BillboardSection() {
@@ -69,7 +69,7 @@ export default function BillboardSection() {
   // Auto-advance — disabled on mobile
   const startAuto = useCallback(() => {
     clearInterval(timerRef.current)
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 870) {
       timerRef.current = setInterval(() => {
         setOffsetIdx(i => i + 1)
       }, 2600)
