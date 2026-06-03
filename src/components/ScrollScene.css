@@ -473,3 +473,254 @@
     margin-top: 130px;
   }
 }
+
+/* ── Mobile phones only (desktop unchanged above 768px) ── */
+@media (max-width: 768px) {
+  .ss-wrap {
+    height: 500vh;
+  }
+
+  .ss-sticky {
+    height: 100vh;
+  }
+
+  .ss-hero-bg {
+    padding: 0 16px;
+  }
+
+  .hero-nav {
+    padding: 14px 0;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-lang {
+    display: none;
+  }
+
+  .nav-logo {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+  }
+
+  .nav-contact {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .hero-stats {
+    padding-left: 0;
+    padding-top: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .stat-item {
+    font-size: 11px;
+    padding: 7px 12px;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .hero-content {
+    padding-right: 0;
+    padding-bottom: 36px;
+  }
+
+  .hero-headline {
+    font-size: clamp(36px, 11vw, 56px);
+    letter-spacing: 1px;
+  }
+
+  .hero-subtext {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .hero-drip svg,
+  .strat-drip-top svg {
+    height: 60px;
+  }
+
+  .strat-text {
+    margin-top: 80px;
+    padding: 0 12px 24px;
+  }
+
+  .strat-headline {
+    font-size: clamp(22px, 6.5vw, 34px);
+    letter-spacing: 1px;
+  }
+
+  .strat-sub {
+    font-size: 14px;
+  }
+
+  .ss-card {
+    width: clamp(110px, 30vw, 150px);
+    height: clamp(150px, 40vw, 200px);
+    border-width: 4px;
+  }
+
+  .ss-card-badge {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-nav {
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-size: 16px;
+  }
+
+  .hero-headline {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .ss-wrap {
+    height: 450vh;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE STATIC LAYOUT (≤768px)
+   No scroll animation — clean single column
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hide the desktop scroll scene entirely on mobile */
+  .ss-wrap { display: none; }
+}
+
+/* Mobile hero wrapper */
+.ss-mobile {
+  display: none;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .ss-mobile { display: block; }
+
+  /* ── Mobile hero green section ── */
+  .ss-mobile-hero {
+    background: #1e7d3a;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* Nav on mobile — logo + contact button only */
+  .ss-mobile-hero .hero-nav {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ss-mobile-hero .nav-links,
+  .ss-mobile-hero .nav-lang {
+    display: none;
+  }
+
+  /* Body: text left, grid right */
+  .ss-mobile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 20px 20px 40px;
+    flex: 1;
+  }
+
+  .ss-mobile-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ss-mobile-text .hero-headline {
+    font-size: clamp(48px, 14vw, 72px);
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  .ss-mobile-text .hero-subtext {
+    font-size: 14px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .ss-mobile-text .hero-cta-row {
+    margin-top: 4px;
+  }
+
+  /* Stats row on mobile */
+  .ss-mobile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .ss-mobile-stats .stat-item {
+    font-size: 12px;
+    padding: 7px 12px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* 2×2 product image grid */
+  .ss-mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .ss-mobile-card {
+    position: relative;
+    height: 140px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .ss-mobile-card .ss-card-img {
+    border-radius: 10px;
+  }
+
+  .ss-mobile-card .ss-card-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  /* ── Mobile strategy section ── */
+  .ss-mobile-strat {
+    background: #fff;
+    padding: 40px 20px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .ss-mobile-strat .strat-headline {
+    font-size: clamp(28px, 9vw, 42px);
+    letter-spacing: 1px;
+  }
+
+  .ss-mobile-strat .strat-sub {
+    font-size: 14px;
+    color: #666;
+    max-width: 300px;
+  }
+}

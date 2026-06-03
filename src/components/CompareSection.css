@@ -304,19 +304,317 @@
   transform: scale(1.4);
 }
 
-/* ── Responsive ── */
+/* ════════════════════════════════════════
+   RESPONSIVE — small screens only
+   Desktop (>900px) is completely unchanged
+════════════════════════════════════════ */
+
+/* ── Tablet (≤900px): stack left/right into top/bottom ── */
 @media (max-width: 900px) {
+  /* Reduce outer height — 5 cards × 80vh each */
+  .compare-outer {
+    height: 450vh;
+    padding: 20px 0;
+  }
+
+  /* Single column: card stack on top, table below */
   .compare-section {
     grid-template-columns: 1fr;
-    padding: 40px 24px;
-    gap: 32px;
-    border-radius: 16px;
-    margin: 0 12px;          /* keep a little side margin on mobile */
-    top: 24px;
-    height: calc(100vh - 48px);
-    overflow-y: auto;
+    padding: 32px 24px 28px;
+    gap: 28px;
+    margin: 0 14px;
+    border-radius: 20px;
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: hidden;
+    align-items: start;
   }
-  .compare-outer { height: 600vh; }
-  .card-stack { width: 240px; height: 360px; }
-  .cs-img-wrap { height: 130px; }
+
+  /* Center the card stack */
+  .compare-left {
+    min-height: unset;
+    height: auto;
+    transform: none !important;
+  }
+
+  .card-stack {
+    width: 230px;
+    height: 320px;
+    margin: 0 auto;
+  }
+
+  .cs-img-wrap  { height: 125px; }
+  .cs-title     { font-size: 17px; }
+
+  /* Right side: headline smaller, table fits */
+  .compare-right {
+    transform: none !important;
+  }
+
+  .compare-headline {
+    font-size: clamp(22px, 5.5vw, 34px);
+    margin-bottom: 20px;
+  }
+}
+
+/* ── Mobile phones (≤768px): compact, readable ── */
+@media (max-width: 768px) {
+  .compare-outer {
+    height: 420vh;
+    padding: 16px 0;
+  }
+
+  .compare-section {
+    grid-template-columns: 1fr;
+    padding: 24px 16px 20px;
+    gap: 20px;
+    margin: 0 10px;
+    border-radius: 18px;
+    top: 16px;
+    height: calc(100vh - 32px);
+    overflow-y: hidden;
+    align-items: start;
+  }
+
+  .compare-left {
+    min-height: unset;
+    height: auto;
+  }
+
+  /* Card stack: fits on small screen without overflow */
+  .card-stack {
+    width: 200px;
+    height: 290px;
+    margin: 0 auto;
+  }
+
+  .cs-card {
+    width: 200px;
+    min-height: 280px;
+    padding: 14px 14px 12px;
+  }
+
+  .cs-img-wrap  { height: 110px; }
+  .cs-title     { font-size: 15px; }
+  .cs-tag       { font-size: 10px; padding: 4px 10px; }
+  .cs-brand,
+  .cs-progress  { font-size: 11px; }
+
+  .cs-card--behind-1 { transform: scale(0.93) translateY(10px) rotate(-2deg); }
+  .cs-card--behind-2 { transform: scale(0.86) translateY(20px) rotate(3deg);  }
+
+  /* Eyebrow + headline */
+  .eyebrow          { font-size: 11px; text-align: center; }
+  .compare-headline {
+    font-size: clamp(20px, 6.5vw, 28px);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  /* Table: tighter spacing */
+  .compare-table thead th { font-size: 10px; padding-bottom: 10px; }
+  .th-us, .th-them        { width: 60px; }
+  .us-pill                { font-size: 10px; padding: 3px 8px; }
+  .td-label               { font-size: 11px; }
+  .cmp-row td             { padding: 9px 0; }
+
+  /* Check pill */
+  .check-pill     { width: 24px; height: 24px; font-size: 12px; }
+  .check-pill--lit { width: 40px; }
+
+  /* Dots centered */
+  .cmp-dots { justify-content: center; margin-top: 12px; }
+}
+
+/* ── Very small phones (≤480px) ── */
+@media (max-width: 480px) {
+  .compare-outer { height: 400vh; }
+
+  .compare-section {
+    padding: 20px 12px 16px;
+    margin: 0 8px;
+    border-radius: 16px;
+  }
+
+  .card-stack    { width: 180px; height: 265px; }
+  .cs-card       { width: 180px; min-height: 260px; }
+  .cs-img-wrap   { height: 96px; }
+  .cs-title      { font-size: 14px; }
+
+  .compare-headline { font-size: clamp(18px, 6vw, 24px); }
+  .td-label         { font-size: 10px; }
+  .th-us, .th-them  { width: 52px; }
+}
+
+
+/* ═══════════════════════════════════════════
+   MOBILE STATIC LAYOUT (cmp-mobile)
+   Click-based card switching, no sticky scroll
+═══════════════════════════════════════════ */
+.cmp-mobile {
+  background: #1e7d3a;
+  border-radius: 24px;
+  margin: 20px 12px;
+  padding: 28px 16px 32px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Header */
+.cmp-mobile-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cmp-mobile-header .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 6px;
+}
+
+.cmp-mobile-header .compare-headline {
+  font-size: clamp(26px, 8vw, 40px);
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.0;
+  margin: 0;
+}
+
+/* Card area: arrow + stack + arrow */
+.cmp-mobile-card-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cmp-mobile-arrow {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.cmp-mobile-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.28);
+}
+
+.cmp-mobile-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Card stack container */
+.cmp-mobile-stack {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+/* Override card sizes for mobile stack */
+.cmp-mobile-stack .cs-card {
+  width: 220px;
+  min-height: 290px;
+}
+
+.cmp-mobile-stack .cs-img-wrap {
+  height: 130px;
+}
+
+/* Active label below card */
+.cmp-mobile-label {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  margin: 4px 0 20px;
+  padding: 0 8px;
+}
+
+/* Benefits table wrapper */
+.cmp-mobile-table-wrap {
+  background: rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 12px 8px;
+  overflow: hidden;
+}
+
+.cmp-mobile-table-wrap .compare-table {
+  width: 100%;
+}
+
+.cmp-mobile-table-wrap .compare-table thead th {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.cmp-mobile-table-wrap .th-us,
+.cmp-mobile-table-wrap .th-them { width: 60px; }
+
+.cmp-mobile-table-wrap .us-pill {
+  font-size: 10px;
+  padding: 3px 8px;
+}
+
+.cmp-mobile-table-wrap .td-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.78);
+}
+
+.cmp-mobile-table-wrap .cmp-row {
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.cmp-mobile-table-wrap .cmp-row td {
+  padding: 9px 0;
+}
+
+.cmp-mobile-table-wrap .cmp-row:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* Dots */
+.cmp-mobile .cmp-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 480px) {
+  .cmp-mobile {
+    margin: 12px 8px;
+    padding: 22px 12px 24px;
+    border-radius: 18px;
+  }
+
+  .cmp-mobile-stack {
+    width: 190px;
+    height: 270px;
+  }
+
+  .cmp-mobile-stack .cs-card    { width: 190px; min-height: 260px; }
+  .cmp-mobile-stack .cs-img-wrap { height: 110px; }
+
+  .cmp-mobile-header .compare-headline { font-size: clamp(22px, 7.5vw, 32px); }
 }

@@ -234,11 +234,166 @@
 }
 .bb-dot--active { background: #f4eb25; transform: scale(1.4); }
 
-/* ── Responsive ── */
+/* ── Mobile phones only ── */
 @media (max-width: 768px) {
-  .bb-headline { font-size: clamp(22px,7vw,36px); letter-spacing: -1px; }
-  .bb-card { flex: 0 0 200px; width: 200px; }
-  .bb-track { padding-left: calc(50% - 100px); gap: 14px; }
-  .bb-headline-wrap { padding-top: 32px; }
-  .bb-fade-left, .bb-fade-right { width: 80px; }
+  .bb-section {
+    min-height: 100svh;
+  }
+
+  .bb-headline {
+    font-size: clamp(22px, 7vw, 36px);
+    letter-spacing: -1px;
+    padding: 0 16px;
+  }
+
+  .bb-headline-wrap {
+    padding-top: 28px;
+  }
+
+  .bb-pill {
+    font-size: 10px;
+    padding: 6px 14px;
+  }
+
+  .bb-card {
+    flex: 0 0 220px;
+    width: 220px;
+    padding: 18px 16px 14px;
+  }
+
+  .bb-track {
+    padding-left: calc(50% - 110px);
+    gap: 14px;
+  }
+
+  .bb-fade-left,
+  .bb-fade-right {
+    width: 60px;
+  }
+
+  .bb-nav-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 26px;
+  }
+
+  .bb-bottom {
+    padding-bottom: 28px;
+  }
+
+  .bb-card-text {
+    -webkit-line-clamp: 4;
+  }
+}
+
+@media (max-width: 480px) {
+  .bb-headline-wrap {
+    padding-top: 20px;
+  }
+
+  .bb-card {
+    flex: 0 0 260px;
+    width: 260px;
+  }
+
+  .bb-track {
+    padding-left: calc(50% - 130px);
+  }
+
+  .bb-fade-left,
+  .bb-fade-right {
+    width: 40px;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BILLBOARD — MOBILE LAYOUT
+   No auto-scroll · single card · manual nav
+═══════════════════════════════════════════ */
+.bb-section--mobile {
+  height: auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headline sits at top on mobile */
+.bb-section--mobile .bb-headline-wrap {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  padding-top: 36px;
+  flex-shrink: 0;
+}
+
+.bb-section--mobile .bb-headline {
+  font-size: clamp(22px, 8vw, 36px);
+  letter-spacing: -1px;
+  padding: 0 16px;
+}
+
+.bb-section--mobile .bb-pill {
+  font-size: 10px;
+  padding: 6px 14px;
+}
+
+/* Bottom content fills remaining space */
+.bb-mobile-bottom {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 36px;
+  gap: 20px;
+}
+
+/* Single featured card — white, solid */
+.bb-mobile-card-wrap {
+  width: 100%;
+  max-width: 340px;
+}
+
+.bb-mobile-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 22px 20px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.bb-mobile-card .bb-stars      { color: #f5a623; font-size: 16px; letter-spacing: 3px; margin-bottom: 12px; }
+.bb-mobile-card .bb-card-title { font-size: 16px; font-weight: 800; color: #1a1a1a; margin: 0 0 10px; }
+.bb-mobile-card .bb-card-text  { font-size: 13px; color: #555; line-height: 1.6; margin: 0 0 16px; }
+.bb-mobile-card .bb-card-name  { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+.bb-mobile-card .bb-verified   { font-size: 12px; color: #1e7d3a; font-weight: 600; }
+
+/* Controls: arrow · dots · arrow in one row */
+.bb-mobile-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bb-mobile-controls .bb-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.bb-mobile-controls .bb-nav-btn {
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+}
+
+@media (max-width: 480px) {
+  .bb-mobile-bottom { padding: 16px 16px 28px; }
+  .bb-mobile-card { padding: 20px 18px 16px; }
+  .bb-mobile-card .bb-card-title { font-size: 15px; }
+  .bb-mobile-card .bb-card-text  { font-size: 12px; }
 }
