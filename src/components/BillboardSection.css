@@ -1,0 +1,244 @@
+/* ════════════════════════════════════════
+   BILLBOARD SECTION
+   full-bleed bg · headline behind cards
+   continuous scrolling track carousel
+════════════════════════════════════════ */
+
+.bb-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Full-bleed background image ── */
+.bb-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/banner1.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* ── Dark gradient overlay ── */
+.bb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.65) 50%,
+    rgba(0,0,0,0.82) 100%
+  );
+  z-index: 1;
+}
+
+/* ── Headline — behind cards, top area ── */
+.bb-headline-wrap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 52px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+}
+.bb--visible .bb-headline-wrap { opacity: 1; transform: translateY(0); }
+
+.bb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 40px;
+  margin-bottom: 14px;
+}
+
+.bb-headline {
+  font-size: clamp(30px, 5vw, 68px);
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.0;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+.bb-headline-accent { color: #f4eb25; }
+
+/* ── Bottom zone ── */
+.bb-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 36px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+.bb--visible .bb-bottom { opacity: 1; transform: translateY(0); }
+
+/* ── Nav buttons ── */
+.bb-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.bb-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+.bb-nav-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.1);
+}
+
+/* ── Viewport — clips the track ── */
+.bb-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  overflow: hidden;
+  /* Extra padding so edge cards peek in */
+  padding: 10px 0 16px;
+}
+
+/* ── The moving track ── */
+.bb-track {
+  display: flex;
+  gap: 20px;
+  /* Add centering offset so center card aligns to viewport center */
+  padding-left: calc(50% - 130px); /* 130 = half of card width 260 */
+  transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.3, 1);
+  will-change: transform;
+}
+
+/* No animation class for instant silent reset */
+.bb-track--no-transition {
+  transition: none !important;
+}
+
+/* ── Base card — all cards in track ── */
+.bb-card {
+  flex: 0 0 260px;
+  width: 260px;
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Side cards — transparent glass ── */
+.bb-card--side {
+  background: rgba(255,255,255,0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  transform: scale(0.91);
+  opacity: 0.7;
+}
+.bb-card--side .bb-stars      { color: #f5a623; }
+.bb-card--side .bb-card-title { color: rgba(255,255,255,0.92); }
+.bb-card--side .bb-card-text  { color: rgba(255,255,255,0.58); }
+.bb-card--side .bb-card-name  { color: rgba(255,255,255,0.78); }
+.bb-card--side .bb-verified   { color: #6dd98c; }
+
+/* ── Center card — solid white, full size ── */
+.bb-card--center {
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+  transform: scale(1.0);
+  opacity: 1;
+  z-index: 2;
+}
+.bb-card--center .bb-stars      { color: #f5a623; }
+.bb-card--center .bb-card-title { color: #1a1a1a; }
+.bb-card--center .bb-card-text  { color: #555; }
+.bb-card--center .bb-card-name  { color: #1a1a1a; }
+.bb-card--center .bb-verified   { color: #1e7d3a; }
+
+/* ── Card inner ── */
+.bb-stars        { font-size: 14px; letter-spacing: 2px; margin-bottom: 10px; }
+.bb-card-title   { font-size: 14px; font-weight: 800; margin: 0 0 8px; }
+.bb-card-text    {
+  font-size: 12px; line-height: 1.55; margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bb-card-footer  { display: flex; align-items: center; justify-content: space-between; }
+.bb-card-name    { font-size: 12px; font-weight: 700; }
+.bb-verified     { font-size: 11px; font-weight: 600; }
+
+/* ── Left / right edge fade masks ── */
+.bb-fade-left,
+.bb-fade-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 160px;
+  pointer-events: none;
+  z-index: 3;
+}
+.bb-fade-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+.bb-fade-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+
+/* ── Dots ── */
+.bb-dots { display: flex; gap: 8px; margin-top: 14px; }
+.bb-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%; border: none;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  padding: 0;
+}
+.bb-dot--active { background: #f4eb25; transform: scale(1.4); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bb-headline { font-size: clamp(22px,7vw,36px); letter-spacing: -1px; }
+  .bb-card { flex: 0 0 200px; width: 200px; }
+  .bb-track { padding-left: calc(50% - 100px); gap: 14px; }
+  .bb-headline-wrap { padding-top: 32px; }
+  .bb-fade-left, .bb-fade-right { width: 80px; }
+}
